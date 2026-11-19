@@ -59,6 +59,17 @@
       <div class="overlay-box">
         <p id="overlay-title">GAME OVER</p>
         <p id="overlay-score"></p>
+        <!-- [records] panel de records al terminar la partida -->
+        <div id="records-gameover" class="records hidden">
+          <p id="record-msg" class="record-msg"></p>
+          <form id="record-form" class="record-form hidden" autocomplete="off">
+            <input id="record-name" type="text" maxlength="12" placeholder="Tu nombre" aria-label="Tu nombre" />
+            <button type="submit" id="record-save">Guardar</button>
+          </form>
+          <div id="gameover-records"></div>
+          <p id="gameover-stats" class="records-stats"></p>
+          <button type="button" class="records-reset">Borrar records</button>
+        </div>
         <button id="restart-btn">Reiniciar</button>
       </div>
     </div>
@@ -90,10 +101,23 @@
         <p class="pause-hint">↑↓ elegir · Enter aceptar · ←→ nivel · Esc reanudar</p>
       </div>
     </div>
+
+    <!-- [records] pantalla de inicio -->
+    <div id="start-screen" class="overlay start-screen">
+      <div class="overlay-box records">
+        <p class="start-title">Tetris juarez</p>
+        <button type="button" id="start-btn">Jugar</button>
+        <p class="label">RECORDS</p>
+        <div id="start-records"></div>
+        <p id="start-stats" class="records-stats"></p>
+        <button type="button" class="records-reset">Borrar records</button>
+      </div>
+    </div>
   </div>
 
   <script src="skins.js"></script>
   <script src="pause-menu.js"></script>
+  <script src="records.js"></script>
   <script src="game.js"></script>
 </body>
 </html>
