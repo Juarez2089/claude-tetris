@@ -41,6 +41,7 @@ const overlayScore = document.getElementById('overlay-score');
 const restartBtn = document.getElementById('restart-btn');
 
 let board, current, next, score, lines, level, paused, gameOver, lastTime, dropAccum, dropInterval, animId;
+let combo, bestCombo; // [records] locks consecutivos que limpian líneas
 
 function createBoard() {
   return Array.from({ length: ROWS }, () => new Array(COLS).fill(0));
@@ -110,6 +111,9 @@ function clearLines() {
     dropInterval = Math.max(100, 1000 - (level - 1) * 90);
     updateHUD();
   }
+  // [records] combo: locks consecutivos que limpian líneas
+  combo = cleared ? combo + 1 : 0;
+  bestCombo = Math.max(bestCombo, combo);
 }
 
 function ghostY() {
@@ -224,10 +228,11 @@ function endGame() {
   overlayTitle.textContent = 'GAME OVER';
   overlayScore.textContent = `Puntuación: ${score.toLocaleString()}`;
   overlay.classList.remove('hidden');
+  Records.onGameOver({ score, lines, level, bestCombo }); // [records]
 }
 
 function togglePause() {
-  if (gameOver) return;
+  if (gameOver || !current) return; // [records] !current: aún en pantalla de inicio
   paused = !paused;
   if (!paused) {
     lastTime = performance.now();
@@ -253,6 +258,7 @@ function loop(ts) {
     }
   }
   draw();
+  if (gameOver) return; // [records] no re-programar el loop tras game over (endGame no cancela el frame en curso)
   animId = requestAnimationFrame(loop);
 }
 
@@ -261,11 +267,14 @@ function init() {
   score = 0;
   lines = 0;
   level = 1;
+  combo = 0;      // [records]
+  bestCombo = 0;  // [records]
   paused = false;
   gameOver = false;
   dropInterval = 1000;
   dropAccum = 0;
   lastTime = performance.now();
+  Records.onInit(); // [records] oculta pantalla de inicio y panel de records
   next = randomPiece();
   spawn();
   updateHUD();
@@ -275,6 +284,8 @@ function init() {
 }
 
 document.addEventListener('keydown', e => {
+  // [records] ignorar teclas mientras se escribe el nombre o antes de la primera partida
+  if (e.target instanceof HTMLInputElement || !current) return;
   if (e.code === 'KeyP') { togglePause(); return; }
   if (paused || gameOver) return;
   switch (e.code) {
@@ -301,4 +312,4 @@ document.addEventListener('keydown', e => {
 
 restartBtn.addEventListener('click', init);
 
-init();
+// [records] la partida empieza desde el botón "Jugar" de la pantalla de inicio (records.js)
