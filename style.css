@@ -156,3 +156,25 @@ kbd {
 #restart-btn:hover {
   background: #9bbdff;
 }
+
+/* ---- [skins] Selector de tema ---- */
+#skin-select {
+  background: #22223a;
+  color: #e0e0e0;
+  border: 1px solid #3a3a5a;
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+#skin-select:focus {
+  outline: 1px solid #7aa2f7;
+}
+
+html[data-skin="neon"] #board,
+html[data-skin="neon"] #next-canvas {
+  border-color: #2a2a55;
+  box-shadow: 0 0 24px rgba(0, 240, 255, 0.25);
+}
