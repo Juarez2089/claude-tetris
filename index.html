@@ -38,7 +38,7 @@
             <li><kbd>↑</kbd> rotar</li>
             <li><kbd>↓</kbd> bajar</li>
             <li><kbd>Space</kbd> caída</li>
-            <li><kbd>P</kbd> pausa</li>
+            <li><kbd>P</kbd><kbd>Esc</kbd> pausa</li>
           </ul>
         </div>
       </aside>
@@ -51,8 +51,37 @@
         <button id="restart-btn">Reiniciar</button>
       </div>
     </div>
+
+    <!-- Menú de pausa (pause-menu.js) -->
+    <div id="pause-menu" class="overlay hidden">
+      <div class="overlay-box pause-box">
+        <p class="pause-title">PAUSA</p>
+        <button class="pause-item" type="button" data-action="resume">Reanudar</button>
+        <button class="pause-item" type="button" data-action="restart">Reiniciar</button>
+        <button class="pause-item" type="button" data-action="controls">Ver controles</button>
+        <div id="pause-controls" class="pause-controls hidden">
+          <ul>
+            <li><kbd>←</kbd><kbd>→</kbd> mover</li>
+            <li><kbd>↑</kbd><kbd>X</kbd> rotar</li>
+            <li><kbd>↓</kbd> bajar</li>
+            <li><kbd>Space</kbd> caída rápida</li>
+            <li><kbd>P</kbd><kbd>Esc</kbd> pausa</li>
+          </ul>
+        </div>
+        <div class="pause-item pause-level" data-action="level">
+          <span>Nivel inicial</span>
+          <span class="pause-level-picker">
+            <button id="pause-level-dec" type="button" tabindex="-1" aria-label="Bajar nivel">−</button>
+            <span id="pause-level-value">1</span>
+            <button id="pause-level-inc" type="button" tabindex="-1" aria-label="Subir nivel">+</button>
+          </span>
+        </div>
+        <p class="pause-hint">↑↓ elegir · Enter aceptar · ←→ nivel · Esc reanudar</p>
+      </div>
+    </div>
   </div>
 
+  <script src="pause-menu.js"></script>
   <script src="game.js"></script>
 </body>
 </html>

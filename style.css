@@ -156,3 +156,107 @@ kbd {
 #restart-btn:hover {
   background: #9bbdff;
 }
+
+/* ---- Menú de pausa ---- */
+.pause-box {
+  width: 240px;
+  gap: 8px;
+}
+
+.pause-title {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: #7aa2f7;
+  margin-bottom: 6px;
+}
+
+.pause-item {
+  width: 100%;
+  background: #22223a;
+  color: #e0e0e0;
+  border: 1px solid #3a3a5a;
+  border-radius: 6px;
+  padding: 9px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  letter-spacing: 1px;
+  cursor: pointer;
+  text-align: center;
+  outline: none;
+}
+
+.pause-item.selected {
+  background: #7aa2f7;
+  border-color: #7aa2f7;
+  color: #0f0f17;
+}
+
+.pause-level {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: default;
+}
+
+.pause-level-picker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pause-level-picker button {
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 4px;
+  background: #0f0f17;
+  color: #e0e0e0;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pause-level-picker button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+#pause-level-value {
+  min-width: 20px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 700;
+}
+
+.pause-controls {
+  width: 100%;
+  background: #15151f;
+  border: 1px solid #2a2a3a;
+  border-radius: 6px;
+  padding: 10px 14px;
+}
+
+.pause-controls.hidden {
+  display: none;
+}
+
+.pause-controls ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pause-controls li {
+  font-size: 12px;
+  color: #aaa;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pause-hint {
+  margin-top: 4px;
+  font-size: 10px;
+  color: #777790;
+}
